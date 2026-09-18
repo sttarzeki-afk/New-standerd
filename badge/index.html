@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta name="google" content="notranslate" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Oswald" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <title>Pishkinen Navxoye</title>
+
+  <style>
+    /* ---- base theme, taken from the site's own main.css ---- */
+    body{
+      direction: rtl;
+      font-family: Lato, Helvetica, Arial, sans-serif;
+      color:#555;
+    }
+    .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6{
+      font-family: Oswald, Helvetica, Arial, sans-serif;
+      font-weight:400;
+      color:#000;
+    }
+    .card .h2, .card h2 { margin-bottom: 28px !important; }
+
+    .img-thumbnail {
+      padding: 4px;
+      line-height: 1.58;
+      background-color: #2c5383 !important;
+      border: 5px solid #2c5383 !important;
+      border-radius: 4px;
+      transition: all .2s ease-in-out;
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* real .card rules: rounded corners, generous rem padding, no shadow */
+    .card{
+      border-radius:.25rem;
+      background-color:#fff;
+      border:1px solid rgba(0,0,0,.125);
+      margin-bottom:3rem;
+      overflow:hidden;
+    }
+    .card .card-block{ padding:2.5rem; }
+    @media (min-width:992px){ .card .card-block{ padding:4rem; } }
+
+    /* real .btn rules: pill-shaped, no border, subtle transition */
+    .btn{
+      border-radius:50px;
+      border:none;
+      transition:all .2s linear;
+      font-family:Lato, Helvetica, Arial, sans-serif;
+    }
+    .btn-generate{
+      background-color:#2c5383;
+      color:#fff;
+      padding:10px 30px;
+      font-weight:700;
+    }
+    .btn-generate:hover{ background-color:#1e3c60; color:#fff; }
+
+    /* ---- entry form (new, not part of the original template) ---- */
+    #entryForm{
+      background:#fff;
+      border-radius:.25rem;
+      padding:2.5rem;
+      margin:2rem 0;
+      border:1px solid rgba(0,0,0,.125);
+    }
+    #entryForm h3.alert{
+      color:white;background-color:#384566;font-family:Arial;
+      margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;
+    }
+    #entryForm .form-group label{font-weight:700;color:#20302B;font-size:13.5px;}
+    #entryForm input[type="number"], #entryForm input[type="tel"]{direction:ltr;text-align:right;}
+    #reportArea{display:none;}
+
+    .work-experience{margin-bottom:40px;}
+    .work-experience:last-of-type{margin-bottom:0;}
+  </style>
+</head>
+
+<body>
+
+<div class="background-color-layer"></div>
+<main class="content-wrapper" style="background-color: #2c5383;">
+<br><br>
+
+ <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+
+        <!-- ====================== INPUT FORM (fills the report below) ====================== -->
+        <div id="entryForm">
+          <h3 class="alert alert-info"><b>ده‌رخستنا زانیارییان</b></h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group"><label>ژمارا پسولێ</label>
+                <input type="text" class="form-control" id="f_pasule" inputmode="numeric"></div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group"><label>لایه‌نێ داخازكار</label>
+                <input type="text" class="form-control" id="f_daxazkar"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group"><label>ناڤ و نیشانێن</label>
+                <input type="text" class="form-control" id="f_navnishan"></div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group"><label>ژمارا موبایلێ</label>
+                <input type="tel" class="form-control" id="f_mobile" inputmode="numeric"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group"><label>مێژوویا وه‌رگرتنا نموونێ</label>
+                <input type="datetime-local" class="form-control" id="f_tarikh"></div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group"><label>كودێ كه‌ره‌سته‌ى</label>
+                <input type="text" class="form-control" id="f_kod" inputmode="numeric"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group"><label>كه‌ره‌سته‌</label>
+                <input type="text" class="form-control" id="f_kerreste"></div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group"><label>جورێ كه‌ره‌سته‌یی</label>
+                <input type="text" class="form-control" id="f_jor"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group"><label>بهایێ پشكنینێ</label>
+                <input type="number" class="form-control" id="f_biha"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group"><label>پشكنینێن فیزیكى</label>
+                <textarea class="form-control" id="f_fizik" rows="3">كه‌ره‌سته‌ لژێر پشكنینێ دایه‌</textarea></div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group"><label>پشكنینێن كیمیایى</label>
+                <textarea class="form-control" id="f_kimya" rows="3">كه‌ره‌سته‌ لژێر پشكنینێ دایه‌</textarea></div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group"><label>پشكنینێن بایولوجى</label>
+                <textarea class="form-control" id="f_bayoloji" rows="3">كه‌ره‌سته‌ لژێر پشكنینێ دایه‌</textarea></div>
+            </div>
+          </div>
+          <div class="text-center" style="margin-top:14px;">
+            <button type="button" class="btn btn-generate" onclick="generateReport()">دروستکرنا نموونه‌یێ</button>
+          </div>
+        </div>
+
+        <!-- ====================== REPORT (exact structure of the site's template) ====================== -->
+        <div id="reportArea">
+
+        <div class="card" >
+          <div class="card-block">
+            <h3 class="alert alert-info" style="color:white;background-color:#384566;font-family:Arial;margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;"><b> پێزانینێن ده‌ستپێكى</b></h3>
+            <div class="row">
+            <div class="col-md-4"></div>
+              <div class="col-md-8">
+               <br>
+                <p style="color:black;font-family:Arial;font-size: 14px;"><b>ژمارا پسولێ : <span id="p_pasule"></span></b></p>
+                <p style="color:black;font-family:Arial;font-size: 14px;"><b> لایه‌نێ داخازكار : <span id="p_daxazkar"></span></b></p>
+                <p style="color:black;font-family:Arial;font-size: 14px;"><b>ناڤ و نیشانێن  : <span id="p_navnishan"></span></b></p>
+                <p style="color:black;font-family:Arial;font-size: 14px;"><b>ژمارا موبایلێ  : <span id="p_mobile"></span></b></p>
+               <p style="color:black;font-family:Arial;font-size: 14px;"><b>مێژوویا وه‌رگرتنا نموونێ : <span id="p_tarikh"></span></b></p>
+
+               <hr>
+               <p style="color:black;font-family:Arial;font-size: 14px;"><b>كودێ كه‌ره‌سته‌ى   : <span id="p_kod"></span></b></p>
+               <p style="color:black;font-family:Arial;font-size: 14px;"><b> كه‌ره‌سته‌   : <span id="p_kerreste"></span></b></p>
+               <p style="color:black;font-family:Arial;font-size: 14px;"><b>جورێ كه‌ره‌سته‌یی  : <span id="p_jor"></span></b></p>
+               <p style="color:black;font-family:Arial;font-size: 14px;"><b>بهایێ پشكنینێ : <span id="p_biha"></span></b></p>
+
+               <table class="table table-bordered  table-striped table-hover">
+               <tr></tr>
+              </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h3 class="alert alert-info" style="color:white;background-color:#384566;font-family:Arial;margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;">ئه‌نجامێ پشكنینا</h3>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="education-experience">
+                <p style="color:red;font-family:Arial;font-size: 14px;">******</p>
+                <p style="color:Blue;font-family:Arial;font-size: 14px;">پشكنینێن فیزیكى</p>
+                  <p style="color:black;font-family:Arial;font-size: 14px;" id="p_fizik"></p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="education-experience">
+                <p style="color:red;font-family:Arial;font-size: 14px;">******</p>
+                <p style="color:Blue;font-family:Arial;font-size: 14px;">  پشكنینێن كیمیایى</p>
+                  <p style="color:black;font-family:Arial;font-size: 14px;" id="p_kimya"></p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="education-experience">
+                <p style="color:red;font-family:Arial;font-size: 14px;">******</p>
+                <p style="color:Blue;font-family:Arial;font-size: 14px;"> پشكنینێن بایولوجى</p>
+                  <p style="color:black;font-family:Arial;font-size: 14px;" id="p_bayoloji"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" >
+          <div class="card-block">
+            <h3 class="alert alert-info" style="color:white;background-color:#384566;font-family:Arial;margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;">دیتنا مە</h3>
+            <div class="work-experience">
+              <small class="date">******</small>
+              <h3 class="h5 date-title">كومپانیا  <a href="#" title="Create professionnal website">نیوستانده رد</a></h3>
+              <p>ئەم کاردکەین لسەر ئێکلایکرنا کارێ چاڤدێریکرنێ ب رێکا تورا ئەلکترونی کو کارێ دەستنیشانکرن و هەلسەنگاندنا کەل و پەلێن هاتی و بەرهەمێن ناڤخوی ل خالێن سنووری ئاساندکەت. کارکرن دگەل کومپانێن جیهانی یێن ب ناڤ و دەنگ تایبەتمەندێن کونترولا جوری بەشەکێ سەرەکی یە ژ دیتن و مەرەمێن مە، سەرەرای هندێ ئەم پێکولا دەستڤەئینانا باوەرنامێن نیڤ دەولەتی (ISO) یێن پشکنینێن زانستی دکەین یێن کو باوەرپێکری ل سەرانسەری جیهانێ دکەین ، دگەل گەرەنتیا وێ چەندێ کو شارەزایێن مە یێن تاقیگەها خودان باوەرنامێن باوەرپێکرینە ژ یونیسکو.</p>
+            </div>
+
+            <div class="work-experience">
+              <small class="date">******</small>
+              <h3 class="h5 date-title">كومپانیا نیوستانده رد <a href="#" title="">بو پشكنین و كونترولا جورى</a></h3>
+              <p>كومپانيا نيو ستاندرد ل سالا ٢٠١٧ هاتيه دامەزراندن و ب فەرمی یا تومارکریە ل وەزارتا بازرگانی و پیشەسازی ل هەرێما کوردستانا عیراقێ، و یا پێشکەفتیە ل کەرتێ تایبەت دا تایبەتی کو بەرنیاسە ب رەهێن خو یێن ئەکادمی. شانازیێ بخو دبەین کو ئێکەم کومپانیا تایبەتمەندین د بوارێ کونترولا جوری و تاقیگەهێن پشکنینێن هەمی کەرەستێن دهێنە هەرێمێ د رێکا دەروازێن نیڤ دەولەتی</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h4 class="alert alert-info" style="color:white;background-color:#384566;font-family:Arial;margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;">كومپانیا نیوستانده رد بو پشكنین و كونترولا جورى</h4>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img src="assets/images/10t.jpg" class="img-responsive" alt="...">
+                <div class="carousel-caption"><h3 class="h5">******</h3><p>******</p></div>
+              </div>
+              <div class="item">
+                <img src="assets/images/11t.jpg" class="img-responsive" alt="...">
+                <div class="carousel-caption"><h3 class="h5">******</h3><p>******</p></div>
+              </div>
+              <div class="item">
+                <img src="assets/images/4t.jpg" class="img-responsive" alt="...">
+                <div class="carousel-caption"><h3 class="h5">******</h3><p>******</p></div>
+              </div>
+            </div>
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+          </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <h4 class="alert alert-info" style="color:white;background-color:#384566;font-family:Arial;margin:-2.5rem -2.5rem 1.5rem;padding:12px 2.5rem;border-radius:0;">په‌ يوه‌ندى</h4>
+            <div class="row">
+              <div class="col-md-3">
+                <p class="social-buttons"> <a href="#" title=""><span class="social-round-icon fa-icon"><i class="fa fa-phone"></i></span> 0751 490 8322</a></p>
+              </div>
+              <div class="col-md-3">
+                <p class="social-buttons"> <a href="#" title=""><span class="social-round-icon fa-icon"><i class="fa fa-phone"></i></span> 0751 490 8322</a></p>
+              </div>
+              <div class="col-md-3">
+                <p class="social-buttons"> <a href="#" title=""> <span class="social-round-icon fa-icon"><i class="fa fa-envelope-o"></i></span> info@new-standard.com </a> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <div id="services" class="container-fluid text-center">
+              <h2 style="text-transform:uppercase;color:#303030;font-weight:600;">Supporter</h2>
+              <h4>*********</h4>
+              <br>
+              <div class="row">
+                <div class="col-sm-4">
+                  <span><img src="uploads/500png.png" width="130px" height="90px" /></span>
+                  <h4>New Standard Co</h4>
+                  <p>For Testing and Quality Control</p>
+                </div>
+                <div class="col-sm-4">
+                  <span><img src="uploads/inter.png" width="130px" height="90px" /></span>
+                  <h4>Intertek Co</h4>
+                  <p>*******************</p>
+                </div>
+                <div class="col-sm-4">
+                  <span><img src="uploads/iqas.png" width="130px" height="90px" /></span>
+                  <h4>*****</h4>
+                  <p>****************</p>
+                </div>
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="col-sm-4">
+                  <span><img src="uploads/iso1.png" width="130px" height="90px" /></span>
+                  <h4>*******</h4>
+                  <p>*****************</p>
+                </div>
+                <div class="col-sm-4">
+                  <span><img src="uploads/kan.png" width="130px" height="90px" /></span>
+                  <h4>*******</h4>
+                  <p>*******************</p>
+                </div>
+                <div class="col-sm-4">
+                  <span><img src="uploads/jas.jpeg" width="130px" height="90px" /></span>
+                  <h4>*****</h4>
+                  <p>************</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center" style="margin:10px 0 20px;">
+          <button type="button" class="btn btn-generate" onclick="window.print()">چاپکرن</button>
+        </div>
+
+        </div><!-- /#reportArea -->
+
+     </div>
+   </div>
+ </div>
+
+</main>
+
+<footer class="footer-container white-text-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>©All right reserved. Design <a href="#" title="">Jahwar Lawand</a></p>
+        <p>
+          <a class="fa-icon fa-icon-2x" href="#" title=""><i class="fa fa-facebook"></i></a>
+          <a class="fa-icon fa-icon-2x" href="#" title=""><i class="fa fa-twitter"></i></a>
+          <a class="fa-icon fa-icon-2x" href="#" title=""><i class="fa fa-dribbble"></i></a>
+          <a class="fa-icon fa-icon-2x" href="#" title=""><i class="fa fa-linkedin"></i></a>
+          <a class="fa-icon fa-icon-2x" href="#" title=""><i class="fa fa-vimeo"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function fmtDate(v){
+  if(!v) return "";
+  var d = new Date(v);
+  if(isNaN(d)) return v;
+  var pad = function(n){return n<10?"0"+n:n;};
+  return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear()+" "+pad(d.getHours())+":"+pad(d.getMinutes());
+}
+
+function generateReport(){
+  document.getElementById('p_pasule').textContent = document.getElementById('f_pasule').value;
+  document.getElementById('p_daxazkar').textContent = document.getElementById('f_daxazkar').value;
+  document.getElementById('p_navnishan').textContent = document.getElementById('f_navnishan').value;
+  document.getElementById('p_mobile').textContent = document.getElementById('f_mobile').value;
+  document.getElementById('p_tarikh').textContent = fmtDate(document.getElementById('f_tarikh').value);
+  document.getElementById('p_kod').textContent = document.getElementById('f_kod').value;
+  document.getElementById('p_kerreste').textContent = document.getElementById('f_kerreste').value;
+  document.getElementById('p_jor').textContent = document.getElementById('f_jor').value;
+  document.getElementById('p_biha').textContent = document.getElementById('f_biha').value;
+  document.getElementById('p_fizik').textContent = document.getElementById('f_fizik').value;
+  document.getElementById('p_kimya').textContent = document.getElementById('f_kimya').value;
+  document.getElementById('p_bayoloji').textContent = document.getElementById('f_bayoloji').value;
+
+  document.getElementById('reportArea').style.display = 'block';
+  document.getElementById('entryForm').style.display = 'none';
+  document.getElementById('reportArea').scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
